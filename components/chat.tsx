@@ -1,8 +1,7 @@
 'use client';
 
-import type { Attachment, Message } from 'ai';
+import type { Message } from 'ai';
 import { useChat } from '@ai-sdk/react';
-import { useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import { ChatHeader } from '@/components/chat-header';
 import type { Vote } from '@/lib/db/schema';
@@ -15,7 +14,6 @@ import { useArtifactSelector } from '@/hooks/use-artifact';
 import { toast } from 'sonner';
 import { Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
-import { SquareArrowUpRightIcon } from 'lucide-react';
 
 const geistMono = Geist_Mono({
 	subsets: ['latin'],
@@ -66,7 +64,6 @@ export function Chat({
 		fetcher
 	);
 
-	const [attachments, setAttachments] = useState<Array<Attachment>>([]);
 	const isArtifactVisible = useArtifactSelector((state) => state.isVisible);
 
 	return (
@@ -99,8 +96,6 @@ export function Chat({
 							handleSubmit={handleSubmit}
 							isLoading={isLoading}
 							stop={stop}
-							attachments={attachments}
-							setAttachments={setAttachments}
 							messages={messages}
 							setMessages={setMessages}
 							append={append}
@@ -133,8 +128,6 @@ export function Chat({
 				handleSubmit={handleSubmit}
 				isLoading={isLoading}
 				stop={stop}
-				attachments={attachments}
-				setAttachments={setAttachments}
 				append={append}
 				messages={messages}
 				setMessages={setMessages}

@@ -1,5 +1,4 @@
 import { PineconeStore } from '@langchain/pinecone';
-import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
 import { Pinecone as PineconeClient } from '@pinecone-database/pinecone';
 import { getEmbeddingModel } from './embedding-model';
 

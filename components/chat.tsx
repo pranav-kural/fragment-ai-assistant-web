@@ -6,11 +6,9 @@ import useSWR, { useSWRConfig } from 'swr';
 import { ChatHeader } from '@/components/chat-header';
 import type { Vote } from '@/lib/db/schema';
 import { fetcher, generateUUID } from '@/lib/utils';
-import { Artifact } from './artifact';
 import { MultimodalInput } from './multimodal-input';
 import { Messages } from './messages';
-import { VisibilityType } from './visibility-selector';
-import { useArtifactSelector } from '@/hooks/use-artifact';
+import type { VisibilityType } from './visibility-selector';
 import { toast } from 'sonner';
 import { Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
@@ -64,8 +62,6 @@ export function Chat({
 		fetcher
 	);
 
-	const isArtifactVisible = useArtifactSelector((state) => state.isVisible);
-
 	return (
 		<>
 			<div className="flex flex-col min-w-0 h-dvh bg-neutral-100 dark:bg-zinc-950">
@@ -84,7 +80,6 @@ export function Chat({
 					setMessages={setMessages}
 					reload={reload}
 					isReadonly={isReadonly}
-					isArtifactVisible={isArtifactVisible}
 				/>
 
 				<form className="flex mx-auto px-4 pb-2 gap-2 w-full md:max-w-3xl">
@@ -120,21 +115,6 @@ export function Chat({
 					.
 				</p>
 			</div>
-
-			<Artifact
-				chatId={id}
-				input={input}
-				setInput={setInput}
-				handleSubmit={handleSubmit}
-				isLoading={isLoading}
-				stop={stop}
-				append={append}
-				messages={messages}
-				setMessages={setMessages}
-				reload={reload}
-				votes={votes}
-				isReadonly={isReadonly}
-			/>
 		</>
 	);
 }

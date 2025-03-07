@@ -14,7 +14,7 @@ export default async function getContextData(query: string): Promise<string> {
 	console.log('Performed similarity search');
 	// format retrieved docs
 	const docsContent = retrievedDocs
-		.map((doc) => doc.pageContent + '\n\n Metadata: ' + doc.metadata)
+		.map((doc) => `${doc.pageContent}\n\n Metadata: ${doc.metadata}`)
 		.join('\n');
 	console.log('Retrieved docs content');
 	return docsContent;

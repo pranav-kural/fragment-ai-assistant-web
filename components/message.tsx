@@ -5,18 +5,14 @@ import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { memo, useState } from 'react';
 import type { Vote } from '@/lib/db/schema';
-import { DocumentToolCall, DocumentToolResult } from './document';
 import { PencilEditIcon, SparklesIcon } from './icons';
 import { Markdown } from './markdown';
 import { MessageActions } from './message-actions';
-import { PreviewAttachment } from './preview-attachment';
-import { Weather } from './weather';
 import equal from 'fast-deep-equal';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 import { MessageEditor } from './message-editor';
-import { DocumentPreview } from './document-preview';
 import { MessageReasoning } from './message-reasoning';
 
 const PurePreviewMessage = ({
@@ -72,8 +68,7 @@ const PurePreviewMessage = ({
 					)}
 
 					<div className="flex flex-col gap-4 w-full">
-						{message.parts &&
-							message.parts?.map((part, index) => {
+						{message.parts?.map((part, index) => {
 								// Reasoning parts
 								if (part?.type === 'reasoning') {
 									return (
@@ -138,7 +133,7 @@ const PurePreviewMessage = ({
 							</div>
 						)}
 
-						{message.toolInvocations &&
+						{/* {message.toolInvocations &&
 							message.toolInvocations.length > 0 && (
 								<div className="flex flex-col gap-4">
 									{message.toolInvocations.map(
@@ -245,7 +240,7 @@ const PurePreviewMessage = ({
 										}
 									)}
 								</div>
-							)}
+							)} */}
 
 						{!isReadonly && (
 							<MessageActions
